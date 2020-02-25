@@ -57,12 +57,17 @@ temporary value pending your putting in appropriate ones.)
 
 module Math : MATH =
   struct
-    let pi = nan
-    let cos _ = nan
-    let sin _ = nan
-    let sum _ _ = nan
-    let max _ = None
+    let pi = Float.pi
+    let cos x = cos x
+    let sin x = sin x
+    let sum x y = x +. y
+    let max lst = if lst = [] then None else Some (float_list_max lst min_float)
   end ;;
+
+  let rec float_list_max (lst: float list) (current_max : float): float =
+    match lst with
+    | [] -> current_max
+    | hd :: tl -> float_list_max tl (Float.max hd current_max) ;;
 
 (*......................................................................
 Exercise 1B: Now that you've implemented the `Math` module, use it to
@@ -71,7 +76,7 @@ type float option. Name the resulting value `result`. (Use explicit
 module prefixes for this exercise, not global or local opens.)
 ......................................................................*)
 
-let result = Some nan ;;
+let result = let open Math in max [cos pi; sin pi] ;; (* fix later *)
 
 (*......................................................................
 Exercise 1C: Reimplement the computation from 1B above, now as
@@ -79,4 +84,4 @@ Exercise 1C: Reimplement the computation from 1B above, now as
 in a more succinct manner.
 ......................................................................*)
 
-let result_local_open = Some nan ;;
+let result_local_open = let open Math in max [cos pi; sin pi] ;;
