@@ -57,6 +57,19 @@ temporary value pending your putting in appropriate ones.)
 
 module Math : MATH =
   struct
+    let pi = 3.14159
+    let cos = cos
+    let sin = sin
+    let sum = (+.)
+    let max lst =
+      match lst with
+      | [] -> None
+      | hd :: tl -> Some (List.fold_left max hd tl)
+  end ;;
+
+  (* Old code *)
+(* module Math : MATH =
+  struct
     let pi = Float.pi
     let cos x = cos x
     let sin x = sin x
@@ -68,7 +81,7 @@ module Math : MATH =
     match lst with
     | [] -> current_max
     | hd :: tl -> float_list_max tl (Float.max hd current_max) ;;
-
+ *)
 (*......................................................................
 Exercise 1B: Now that you've implemented the `Math` module, use it to
 compute the maximum of the cosine of pi and the sine of pi, a value of

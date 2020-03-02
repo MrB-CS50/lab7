@@ -83,8 +83,13 @@ expression that extracts the red channel of the color named Red,
 thereby naming the result `red_channel`.
 ......................................................................*)
 
-let red_channel : int = Color.red (Color.color_named Red) ;;
+let red_channel : int = Color.red (Color.color_named Color.Red) ;;
 
+(* Possible:
+
+let red_channel : int =
+  let open Color in
+  red (color_named Red) ;; *)
 (* Let's investigate one way that a signature can be useful. Although
 color.ml contains an implementation of a basic color module, the
 implementation is unintuitive and obscure -- truly horrid in fact. (We
