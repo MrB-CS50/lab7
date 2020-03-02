@@ -66,7 +66,7 @@ module Stack : STACK =
   struct
     exception EmptyStack
 
-    type 'a stack = 'a      (* replace this with the correct
+    type 'a stack = 'a list     (* replace this with the correct
                                implementation type *)
 
     (* empty -- An empty stack *)
