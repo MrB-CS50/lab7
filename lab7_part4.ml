@@ -3,6 +3,10 @@
                    Modules and Abstract Data Types
  *)
 
+(*
+                               SOLUTION
+ *)
+
 (* Objective: This lab practices concepts of modules, including files
 as modules, signatures, and polymorphic abstract data types.
 
@@ -66,8 +70,9 @@ module Stack : STACK =
   struct
     exception EmptyStack
 
-    type 'a stack = 'a list     (* replace this with the correct
-                               implementation type *)
+    type 'a stack = 'a list (* We've chosen to implement stacks
+                               internally as lists, a natural
+                               and simple choice *)
 
     (* empty -- An empty stack *)
     let empty : 'a stack = []
@@ -101,16 +106,21 @@ argument and uses your Stack module to return a new stack with the
 following strings pushed in order: `"Computer"`, `"Science"`, `"51"`.
 ......................................................................*)
 
-let sample_stack = 
- let open Stack in
+let sample_stack () =
+  let open Stack in
   empty
   |> push "Computer"
   |> push "Science"
   |> push "51" ;;
+
+(* Notice that even though our implementation of stacks implements
+   them as lists, you can't perform list operations (like `List.rev)
+   on them. The abstraction barrier that module signatures enforce
+   make that impossible. *)
 
 (*......................................................................
 Exercise 4C: Write an expression to generate a stack with the
 `sample_stack` function above and name the top element `top_el`.
 ......................................................................*)
 
-let top_el : string = let open Stack in top (sample_stack ()) ;;
+let top_el : string = Stack.top (sample_stack ()) ;;
