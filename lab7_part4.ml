@@ -113,4 +113,4 @@ Exercise 4C: Write an expression to generate a stack with the
 `sample_stack` function above and name the top element `top_el`.
 ......................................................................*)
 
-let top_el = Stack.top (sample_stack ()) ;;
+let top_el : string = let open Stack in top (sample_stack ()) ;;
