@@ -62,21 +62,22 @@ module IntListStack =
     let empty : stack = []
 
     (* push i s -- Adds an integer element i to the top of stack s *)
-    let push (i : int) (s : stack) : stack = i :: s
+    let push (i : int) (s : stack) : stack =
+      i :: s
 
     (* top s -- Returns the value of the topmost element on stack s,
        raising the EmptyStack exception if there is no element to be
        returned. *)
-    let top (s : stack) : int = 
-     match s with
-     | [] -> raise EmptyStack
-     | h :: _ -> h
+    let top (s : stack) : int =
+      match s with
+      | [] -> raise EmptyStack
+      | h :: _ -> h
 
     (* pop s -- Returns a stack with the topmost element from s
        removed, raising the EmptyStack exception if there is no
        element to be removed. *)
-    let pop (s : stack) : stack = 
-     match s with
+    let pop (s : stack) : stack =
+      match s with
       | [] -> raise EmptyStack
       | _ :: t -> t
   end ;;
@@ -198,7 +199,7 @@ preserves its abstraction barrier.
 ......................................................................*)
 
 let safe_stack () : SafeIntListStack.stack =
- let open SafeIntListStack in
+  let open SafeIntListStack in
   empty
   |> push 5
-  |> push 1 ;; ;;
+  |> push 1 ;;
